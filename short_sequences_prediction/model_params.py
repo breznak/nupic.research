@@ -73,12 +73,12 @@ MODEL_PARAMS = {
 #                },
                 'number': {
                        'fieldname': u'number',
-                       'n': 1000,
+                       'resolution': 0.25, # to have some similarity between adjacent numbers
                        'name': u'number',
                        'type': 'ScalarEncoder',
                        'w': 31, # currently: {0..100},
                        'minval': 0,
-                       'maxval': 20,  # based on generated data, eg for '+' and maxArg=5 this should be 10
+                       'maxval': 10,  # based on generated data, eg for '+' and maxArg=5 this should be 10
                 }
             },
 
@@ -183,7 +183,7 @@ MODEL_PARAMS = {
             # TODO: for Ron: once the appropriate value is placed in TP
             # constructor, see if we should eliminate this parameter from
             # description.py.
-            'maxSynapsesPerSegment': 0, #32,
+            'maxSynapsesPerSegment': 32,
 
             # Maximum number of segments per cell
             #  > 0 for fixed-size CLA
@@ -192,7 +192,7 @@ MODEL_PARAMS = {
             # TODO: for Ron: once the appropriate value is placed in TP
             # constructor, see if we should eliminate this parameter from
             # description.py.
-            'maxSegmentsPerCell': 0, #128,
+            'maxSegmentsPerCell': 128,
 
             # Initial Permanence
             # TODO: need better explanation
@@ -206,9 +206,9 @@ MODEL_PARAMS = {
             # value.
             'permanenceDec' : 0.1,
 
-            'globalDecay': 0.01,
+            'globalDecay': 0.0,
 
-            'maxAge': 100,
+            'maxAge': 0,
 
             # Minimum number of active synapses for a segment to be considered
             # during search for the best-matching segments.
