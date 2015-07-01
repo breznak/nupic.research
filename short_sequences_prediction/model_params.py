@@ -24,7 +24,7 @@
 
 NCOLS = 2048
 NCELLS = 8
-MAX_N = 16
+MAX_N = 20
 
 MODEL_PARAMS = {
     # Type of model that the rest of these parameters apply to.

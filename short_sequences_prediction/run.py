@@ -36,12 +36,28 @@ def _format(inference, sample):
     s += (" %i: %.4f, " % (round(float(k)), float(inf[k])))
   return s
 
-def train(testset=[]):
+
+def pretrain(model, frm, to, n=1000):
+  print "pretraining... ",n,"x"
+  model.disableLearning() # disable for all compotents (SP,TP, Classif)
+  model._getSPRegion().setParameter('learningMode', True) # enable for SP
+  for _ in xrange(n):
+    r = random.randint(frm, to)
+    model.run({'number': r})
+  model.enableLearning()
+  return model
+
+
+def init():
   # create model
   model = ModelFactory.create(model_params.MODEL_PARAMS)
   model.enableInference({'predictedField': _PRED_FIELD})
   model.enableLearning()
+  return model
 
+
+def train(model, testset=[]):
+  print "training..."
   avg = MovingAverage(500)
 
   with open(DATAFILE, 'r') as csvfile:
@@ -75,7 +91,7 @@ def test(model, testset):
     param lenght: #sequences to generate. """
   model.disableLearning()
   for s in testset:
-    print "testing on ", s
+    print "testing on ", s, ": ",
     (_, result) = runSingleExample(model, s)
     print _format(result.inferences, s)
 
@@ -96,8 +112,9 @@ def runSingleExample(model, sample):
 ###################################################################
 if __name__ == "__main__":
     testset = [(2,1,3), (4,2,6)]
-    print "training..." 
-    model = train(testset)
+    model = init() 
+    model = pretrain(model,0, 20, 2000)
+    model = train(model, testset)
     print('==========================================')
     print "testing on: ", testset
     test(model, testset)
