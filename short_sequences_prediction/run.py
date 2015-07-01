@@ -21,6 +21,8 @@ from nupic.utils import MovingAverage
 _PRED_FIELD = 'number'
 DATAFILE = './data.csv'
 AHEAD = 1 # 1 step
+# controls
+DISABLE = 3000 # None to ignore
 
 # num = 0..100
 # op = N/A, '+'
@@ -47,6 +49,10 @@ def train(testset=[]):
     i = 0
     for row in reader:
       i += 1
+      if DISABLE  == i:
+        print "### Disable learning"
+        model.disableLearning()
+
       sample = (int(row[0]), int(row[1]), int(row[2]))
       (model, result) = runSingleExample(model, sample)
       # accuracy
