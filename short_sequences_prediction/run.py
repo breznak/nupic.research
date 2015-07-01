@@ -31,7 +31,7 @@ def _format(inference, sample):
   s += "best=%i %s\tconfidences: " % (inf, "OK" if inf == sample[2] else "WRONG")
   inf = inference['multiStepPredictions'][AHEAD]
   for k in inf.keys():
-    s += (" %i: %.4f, " % (round(k), float(inf[k])))
+    s += (" %i: %.4f, " % (round(float(k)), float(inf[k])))
   return s
 
 def train(testset=[]):
@@ -55,7 +55,7 @@ def train(testset=[]):
         avg.next(1)
       else:
         avg.next(0)
-      if (random.randint(0,10000) % 1) == 0:
+      if (random.randint(0,10000) % 200) == 0:
         print "[%i]\t %s ==> acc=%.2f  %s" % (i, sample, avg.getCurrentAvg(),  _format(result.inferences, sample))
 
   model.disableLearning()
