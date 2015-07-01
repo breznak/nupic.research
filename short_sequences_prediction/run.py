@@ -55,7 +55,7 @@ def train(testset=[]):
         avg.next(1)
       else:
         avg.next(0)
-      if (random.randint(0,10000) % 100) == 0:
+      if (random.randint(0,10000) % 1) == 0:
         print "[%i]\t %s ==> acc=%.2f  %s" % (i, sample, avg.getCurrentAvg(),  _format(result.inferences, sample))
 
   model.disableLearning()

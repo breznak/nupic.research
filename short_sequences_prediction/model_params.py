@@ -73,7 +73,7 @@ MODEL_PARAMS = {
 #                },
                 'number': {
                        'fieldname': u'number',
-                       'resolution': 0.25, # to have some similarity between adjacent numbers
+                       'resolution': 0.05, # to have some similarity between adjacent numbers
                        'name': u'number',
                        'type': 'ScalarEncoder',
                        'w': 31, # currently: {0..100},
@@ -137,7 +137,7 @@ MODEL_PARAMS = {
 
             'synPermActiveInc': 0.1,
 
-            'synPermInactiveDec': 0.01,
+            'synPermInactiveDec': 0.05,
 
             'spatialImp': 'cpp',
         },
@@ -160,7 +160,7 @@ MODEL_PARAMS = {
             'columnCount': NCOLS,
 
             # The number of cells (i.e., states), allocated per column.
-            'cellsPerColumn': 4,
+            'cellsPerColumn': 8,
 
             'inputWidth': NCOLS,
 
@@ -168,7 +168,7 @@ MODEL_PARAMS = {
 
             # Temporal Pooler implementation selector (see _getTPClass in
             # CLARegion.py).
-            'temporalImp': 'py',
+            'temporalImp': 'cpp',
 
             # New Synapse formation count
             # NOTE: If None, use spNumActivePerInhArea
@@ -204,7 +204,7 @@ MODEL_PARAMS = {
             # Permanence Decrement
             # If set to None, will automatically default to tpPermanenceInc
             # value.
-            'permanenceDec' : 0.1,
+            'permanenceDec' : 0.05,
 
             'globalDecay': 0.0,
 
@@ -230,7 +230,7 @@ MODEL_PARAMS = {
             # Smaller values are better for datasets with short sequences,
             # higher values are better for datasets with long sequences.
             'pamLength': 1,
-            'maxSeqLength': 3,
+#            'maxSeqLength': 3,
             'burnIn': 1,
         },
 
