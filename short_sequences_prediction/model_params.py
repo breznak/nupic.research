@@ -116,14 +116,15 @@ MODEL_PARAMS = {
             # SP inhibition control (absolute value);
             # Maximum number of active columns in the SP region's output (when
             # there are more, the weaker ones are suppressed)
-           ## 'numActivePerInhArea': 40,
+            'numActiveColumnsPerInhArea': 40,
 
             'seed': 1956,
 
-            # coincInputPoolPct
+            # potentialPct
             # What percent of the columns's receptive field is available
             # for potential synapses. At initialization time, we will
-            # choose coincInputPoolPct * (2*coincInputRadius+1)^2
+            # choose potentialPct * (2*potentialRadius+1)^2
+            'potentialPct': 0.5,
 
             # The default connected threshold. Any synapse whose
             # permanence value is above the connected threshold is
@@ -134,11 +135,11 @@ MODEL_PARAMS = {
             # threshold set below this default value.
             # (This concept applies to both SP and TP and so 'cells'
             # is correct here as opposed to 'columns')
-            'synPermConnected': 0.2,
+            'synPermConnected': 0.1,
 
             'synPermActiveInc': 0.1,
 
-            'synPermInactiveDec': 0.05,
+            'synPermInactiveDec': 0.01,
 
             'spatialImp': 'cpp',
         },
@@ -205,7 +206,7 @@ MODEL_PARAMS = {
             # Permanence Decrement
             # If set to None, will automatically default to tpPermanenceInc
             # value.
-            'permanenceDec' : 0.05,
+            'permanenceDec' : 0.1,
 
             'globalDecay': 0.0,
 
@@ -215,14 +216,14 @@ MODEL_PARAMS = {
             # during search for the best-matching segments.
             # None=use default
             # Replaces: tpMinThreshold
-            'minThreshold': 9,
+            'minThreshold': 12,
 
             # Segment activation threshold.
             # A segment is active if it has >= tpSegmentActivationThreshold
             # connected synapses that are active due to infActiveState
             # None=use default
             # Replaces: tpActivationThreshold
-            'activationThreshold': 15,
+            'activationThreshold': 12,
 
             'outputType': 'normal',
 
@@ -237,6 +238,8 @@ MODEL_PARAMS = {
 
         'clParams': {
             'regionName' : 'CLAClassifierRegion',
+            'implementation': 'cpp',
+
 
             # Classifier diagnostic output verbosity control;
             # 0: silent; [1..6]: increasing levels of verbosity
