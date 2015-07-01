@@ -27,7 +27,7 @@ AHEAD = 1 # 1 step
 
 def _format(inference, sample):
   s = ""
-  inf = int(round(float(inference['multiStepBestPredictions'][AHEAD])))
+  inf = int(round(inference['multiStepBestPredictions'][AHEAD]))
   s += "best=%i %s\tconfidences: " % (inf, "OK" if inf == sample[2] else "WRONG")
   inf = inference['multiStepPredictions'][AHEAD]
   for k in inf.keys():
@@ -50,7 +50,7 @@ def train(testset=[]):
       sample = (int(row[0]), int(row[1]), int(row[2]))
       (model, result) = runSingleExample(model, sample)
       # accuracy
-      best = int(round(float(result.inferences['multiStepBestPredictions'][AHEAD])))
+      best = int(round(result.inferences['multiStepBestPredictions'][AHEAD]))
       if best == sample[2]:
         avg.next(1)
       else:
@@ -77,10 +77,10 @@ def test(model, testset):
 def runSingleExample(model, sample):
   (arg1, arg2, res) = sample
   try:
-    model.run({'number': str(arg1)})
-    result = model.run({'number': str(arg2)}) # predictions stored from here
+    model.run({'number': arg1})
+    result = model.run({'number': arg2}) # predictions stored from here
     if res is not None:
-      model.run({'number': str(res)})
+      model.run({'number': res})
   except:
     print sample
     raise

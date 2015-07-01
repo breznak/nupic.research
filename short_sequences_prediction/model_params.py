@@ -73,13 +73,12 @@ MODEL_PARAMS = {
 #                },
                 'number': {
                        'fieldname': u'number',
-#                       'resolution': 0.05, # to have some similarity between adjacent numbers
+                       'resolution': 0.05, # to have some similarity between adjacent numbers
                        'name': u'number',
-                       'type': 'CategoryEncoder',
+                       'type': 'ScalarEncoder',
                        'w': 31, # currently: {0..100},
-                       'categoryList': ["0","1","2","3","4","5","6","7","8","9","10"],
-#                       'minval': 0,
-#                       'maxval': 10,  # based on generated data, eg for '+' and maxArg=5 this should be 10
+                       'minval': 0,
+                       'maxval': 10,  # based on generated data, eg for '+' and maxArg=5 this should be 10
                 }
             },
 
