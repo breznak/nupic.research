@@ -23,6 +23,9 @@
 # ----------------------------------------------------------------------
 
 NCOLS = 2048
+NCELLS = 8
+MAX_N = 16
+
 MODEL_PARAMS = {
     # Type of model that the rest of these parameters apply to.
     'model': "CLA",
@@ -73,12 +76,12 @@ MODEL_PARAMS = {
 #                },
                 'number': {
                        'fieldname': u'number',
-                       'resolution': 0.05, # to have some similarity between adjacent numbers
+                       'resolution': 0.1, # to have some similarity between adjacent numbers
                        'name': u'number',
                        'type': 'ScalarEncoder',
-                       'w': 31, # currently: {0..100},
+                       'w': 71, # currently: {0..100},
                        'minval': 0,
-                       'maxval': 10,  # based on generated data, eg for '+' and maxArg=5 this should be 10
+                       'maxval': MAX_N,  # based on generated data, eg for '+' and maxArg=5 this should be 10
                 }
             },
 
